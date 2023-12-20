@@ -30,6 +30,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
     String imageurl,imageurl2;
     TextView changeAre;
     String link1,link2;
+     private loading loadingDialog;
     double area,area1;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,6 +44,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
         preprocessimg1=findViewById(R.id.preprocessedimage1);
         preprocessimg2=findViewById(R.id.image2preprocessed);
         changeAre=findViewById(R.id.chgedArea);
+        loadingDialog= new loading(AnalyseSpringBoundaries.this);
         analysebtn=findViewById(R.id.analysebtn);
         Intent in=getIntent();
         imageurl=in.getStringExtra("imageurl");
@@ -64,6 +66,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
         analysebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingDialog.show();
                 new FlaskRequestTaskImg().execute(imageurl);
 
                 new FlaskRequestTaskImg2().execute(imageurl2);
@@ -325,6 +328,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
                 preprocessed.setText(areaString);
                 double areaa=((area1-area)/area)*100;
                 changeAre.setText(""+areaa);
+                loadingDialog.dismiss();
 
                 // Print the result
                 System.out.println("Area: " + areaString);

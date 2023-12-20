@@ -17,6 +17,7 @@ public class StatusDataCollector extends AppCompatActivity {
     private RecyclerView recyclerView;
     private StatusAdapter activityAdapter;
     private List<StatusActivityModel> activityList;
+    private loading loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,16 @@ public class StatusDataCollector extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_activities);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Show loading dialog
+        loadingDialog = new loading(StatusDataCollector.this);
+        loadingDialog.show();
+
         // Fetch activities from Firestore
         fetchActivitiesFromFirestore();
 
         // Initialize adapter with an empty list (will be updated later)
         activityList = new ArrayList<>();
-        activityAdapter = new StatusAdapter(activityList,this);
+        activityAdapter = new StatusAdapter(activityList, this);
         recyclerView.setAdapter(activityAdapter);
     }
 
@@ -56,11 +61,16 @@ public class StatusDataCollector extends AppCompatActivity {
 
                     // Update the adapter with the new data
                     activityAdapter.notifyDataSetChanged();
+
+                    // Hide loading dialog after data is fetched
+                    loadingDialog.dismiss();
                 })
                 .addOnFailureListener(e -> {
                     // Handle failure when fetching data from Firestore
                     Toast.makeText(getApplicationContext(), "Failed to fetch data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    // Hide loading dialog in case of failure
+                    loadingDialog.dismiss();
                 });
     }
-
 }

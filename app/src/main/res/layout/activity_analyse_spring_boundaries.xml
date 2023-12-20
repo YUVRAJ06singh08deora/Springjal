@@ -23,12 +23,12 @@
 
                 android:layout_marginLeft="20dp"
 
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
                 android:text="Analyse Springshed Boundary"
 
                 android:textSize="25dp"
 
-                android:textSize="28dp"
 
                 android:textStyle="bold" />
 

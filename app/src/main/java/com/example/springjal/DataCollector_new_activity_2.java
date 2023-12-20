@@ -153,7 +153,11 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
         return Uri.parse(path);
     }
 
-    private void uploadImageToFirebaseStorage(String state,String district,String village,String beneficiary,String status,String dateOfSurvey,String iotDeviceId) {
+    private void uploadImageToFirebaseStorage(String state, String district, String village, String beneficiary, String status, String dateOfSurvey, String iotDeviceId) {
+        // Show the loading dialog
+        upload loadingDialog = new upload(DataCollector_new_activity_2.this);
+        loadingDialog.show();
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         String imageName = "images/" + UUID.randomUUID() + ".jpg"; // Generate a unique image name
@@ -171,14 +175,21 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
                         String additionaldetailstxt = additionalDetails.getText().toString();
                         // Save all data including imageUrl to Firestore
                         saveDataToFirestore(state, district, village, beneficiary, status, dateOfSurvey, iotDeviceId, latitudetxt, longtxt, additionaldetailstxt, imageUrl);
-                   //     Toast.makeText(this,village,Toast.LENGTH_SHORT).show();
+                        // Dismiss the loading dialog after a delay (4 seconds)
+                        new android.os.Handler().postDelayed(
+                                loadingDialog::dismiss,
+                                3000
+                        );
                     });
                 })
                 .addOnFailureListener(e -> {
                     // Handle unsuccessful image upload
                     Toast.makeText(getApplicationContext(), "Error uploading image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    // Dismiss the loading dialog
+                    loadingDialog.dismiss();
                 });
     }
+
 
     private void saveDataToFirestore(String state, String district, String village, String beneficiary,
                                      String status, String dateOfSurvey, String iotDeviceId,

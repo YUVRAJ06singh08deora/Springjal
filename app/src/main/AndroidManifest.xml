@@ -18,6 +18,9 @@
         android:theme="@style/Theme.springjal"
         tools:targetApi="31">
         <activity
+            android:name=".upload"
+            android:exported="false" />
+        <activity
             android:name=".loading"
             android:exported="false" />
         <activity

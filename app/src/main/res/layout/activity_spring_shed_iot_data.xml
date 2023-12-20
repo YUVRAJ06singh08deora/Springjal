@@ -26,387 +26,430 @@
                 android:textColor="#213C89"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
             <RelativeLayout
                 android:id="@+id/state"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="15dp"
+                android:layout_below="@+id/addsprtxt"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/addsprtxt">
+                android:layout_marginTop="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Spring Shed Id :"
                     android:textColor="#5BADD3"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/iotdeviceid"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
-                    android:hint="SPR3213"
-                    android:textColorHint="#DB8344"
                     android:background="@drawable/rounded_edittext_background"
-                    />
+                    android:hint="SPR3213"
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/gaugewaterflow"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/state"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/state">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Gauge Water Flow :"
                     android:textColor="#5BADD3"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/gaugewaterflowdata"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
-                    android:hint="321 m/s"
-                    android:textColorHint="#DB8344"
                     android:background="@drawable/rounded_edittext_background"
-                    />
+                    android:hint="321 m/s"
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/turbidityrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/gaugewaterflow"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/gaugewaterflow">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Turbidity :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/turbidityedittextdisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="223 NTU"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/phlevelrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/turbidityrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/turbidityrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Ph Level :"
                     android:textColor="#5BADD3"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/phlevelrledittextdisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
-                    android:hint="7"
-                    android:textColor="#03A9F4"
                     android:background="@drawable/rounded_edittext_background"
-                     />                    
+                    android:hint="7"
+                    android:textColor="#03A9F4" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/temperaturerl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/phlevelrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/phlevelrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Temperature :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/temperatureedittextinput"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="7 Degree Centigrate"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/conductivityrl"
                 android:layout_width="343dp"
+
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/temperaturerl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/temperaturerl">
+                android:layout_marginTop="10dp"
+                >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Conductivity :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/conductivityEdittextDisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="233 s/m"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/disssolvedoxygenrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/conductivityrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/conductivityrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="DO (Dissolved Oxygen) :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/disssolvedoxygenedittextdisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="876 ppm"
-                    android:textColorHint="#353333"
-                    />
+                    android:textColorHint="#353333" />
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/gasvaluerl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/disssolvedoxygenrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/disssolvedoxygenrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Gas Value :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/gasvalueedittxt"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="675 m^3"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/hardnessrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/disssolvedoxygenrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/disssolvedoxygenrl">
+                android:layout_marginTop="10dp"
+                >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Hardness :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/hardnessEdittextDatadisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
                     android:hint="7"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:background="@drawable/rounded_edittext_background"
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/solidsrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/disssolvedoxygenrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/disssolvedoxygenrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Solids :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/solidsedittextdisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:layout_marginTop="32.85dp"
                     android:hint="9833 ppm"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/chlorominerl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/solidsrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/solidsrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Chloroamine :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/chloromineedittxt"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
                     android:hint="342 ppm"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:background="@drawable/rounded_edittext_background"
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/sulfaterl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/chlorominerl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/chlorominerl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Sulfate :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/sulfateedt"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="321 ppm"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/ogcrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/chlorominerl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/chlorominerl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Organic Carbon :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/organiccarbnedt"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
                     android:hint="232 ppm"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:background="@drawable/rounded_edittext_background"
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/trihalomethanesrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/ogcrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/ogcrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Trihalo Methane :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/trihalomethaneet"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+
                     android:hint="232 ppm"
-                    android:textColorHint="#DB8344"
-                    />
+                    android:background="@drawable/rounded_edittext_background"
+                    android:textColorHint="#DB8344" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/statusrl"
                 android:layout_width="343dp"
                 android:layout_height="86dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/trihalomethanesrl"
                 android:layout_marginLeft="23dp"
-                android:layout_below="@+id/trihalomethanesrl">
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"         
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="-1dp"
                     android:text="Status :"
                     android:textColor="#DB4464"
-                    android:textStyle="bold"
                     android:textSize="16dp"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginLeft="5dp" />
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/statusedittextDisplay"
                     android:layout_width="343dp"
                     android:layout_height="53.15dp"
                     android:layout_marginTop="32.85dp"
+                    android:background="@drawable/rounded_edittext_background"
                     android:hint="Good"
-                    android:textColorHint="#59EE12"
-                    />
+                    android:textColorHint="#59EE12" />
             </RelativeLayout>
 
 
