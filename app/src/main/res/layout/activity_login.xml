@@ -37,7 +37,7 @@
             android:layout_width="343dp"
             android:layout_height="53.15dp"
             android:layout_marginTop="32.85dp"
-            android:hint="06yuvraj2001singh@gmail.com"
+            android:hint="Email"
             android:textColorHint="#5F5F5F"
             android:textColor="#000000"
             />
