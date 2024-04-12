@@ -176,6 +176,7 @@ public class SpringShedIotData extends AppCompatActivity {
                                             status.setText("BAD");
                                             status.setTextColor(Color.RED);
                                             updateStatusonfirebase("BAD");
+
                                         }
                                         else{
                                             status.setText("GOOD");

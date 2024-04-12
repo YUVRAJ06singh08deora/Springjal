@@ -23,6 +23,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginLeft="23dp"
         android:layout_below="@+id/logintxtpage">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
             android:textSize="16dp"
             android:layout_marginTop="-1dp"
             android:layout_marginLeft="5dp" />
+
         <EditText
             android:id="@+id/emailinput"
             android:layout_width="343dp"
@@ -39,10 +41,9 @@
             android:layout_marginTop="32.85dp"
             android:hint="Email"
             android:textColorHint="#5F5F5F"
-            android:textColor="#000000"
-            />
-
+            android:textColor="#000000" />
     </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/passwdrllogin"

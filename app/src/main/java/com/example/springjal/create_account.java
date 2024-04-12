@@ -1,9 +1,12 @@
 package com.example.springjal;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull; // For AndroidX library
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.EditText;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
@@ -17,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class create_account extends AppCompatActivity {
 
     // Firebase Authentication instance
@@ -35,10 +40,10 @@ public class create_account extends AppCompatActivity {
         String userType = getIntent().getStringExtra("USER_TYPE");
 
         // Find EditText fields
-         nameInput = findViewById(R.id.nameinput);
-         emailInput = findViewById(R.id.emailinput);
-         phoneInput = findViewById(R.id.phoneinout);
-         passwordInput = findViewById(R.id.passwdinput);
+        nameInput = findViewById(R.id.nameinput);
+        emailInput = findViewById(R.id.emailinput);
+        phoneInput = findViewById(R.id.phoneinout);
+        passwordInput = findViewById(R.id.passwdinput);
         createAccountbtn = findViewById(R.id.createaccountbtn);
         // Find the "Create Account" button and set an onClickListener
         createAccountbtn.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +73,23 @@ public class create_account extends AppCompatActivity {
                                         // Store other user details
                                         usersRef.child(user.getUid()).child("name").setValue(name);
                                         usersRef.child(user.getUid()).child("phone").setValue(phone);
+
+                                        // Get the FCM token
+                                        FirebaseMessaging.getInstance().getToken()
+                                                .addOnCompleteListener(new OnCompleteListener<String>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<String> task) {
+                                                        if (task.isSuccessful() && task.getResult() != null) {
+                                                            String fcmToken = task.getResult();
+                                                            // Store FCM token
+                                                            usersRef.child(user.getUid()).child("fcmToken").setValue(fcmToken);
+                                                        } else {
+                                                            // Handle error
+                                                            Log.w(TAG, "Fetching FCM token failed", task.getException());
+                                                        }
+                                                    }
+                                                });
+
                                         // Redirect the user to their specific home page based on role
                                         if (userType.equals("Data Collector")) {
                                             startActivity(new Intent(create_account.this, DataCollector_Home.class));
@@ -91,6 +113,6 @@ public class create_account extends AppCompatActivity {
                             }
                         });
             }
-        });
+        }); // <-- Closing parenthesis added here
     }
 }
