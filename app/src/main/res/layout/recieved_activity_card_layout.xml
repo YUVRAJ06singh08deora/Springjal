@@ -51,9 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Review"
-                android:background="@drawable/button2"
+                android:background="@drawable/button_orange"
                 android:padding="8dp"
-                android:textColor="@color/white"/>
+                android:textColor="#4587A5"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -70,9 +70,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Approve"
-                android:background="@drawable/button2"
+                android:background="@drawable/button_green"
                 android:padding="8dp"
-                android:textColor="@color/white" />
+                android:textColor="#4587A5" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -89,9 +89,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reject"
-                android:background="@drawable/button2"
+                android:background="@drawable/button_pink"
                 android:padding="8dp"
-                android:textColor="@color/white" />
+                android:textColor="#4587A5" />
         </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

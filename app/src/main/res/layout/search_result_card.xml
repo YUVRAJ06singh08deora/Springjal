@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="View Data"
                 android:padding="8dp"
-                android:background="@drawable/button2"
+                android:background="@drawable/button_green"
                 android:textColor="@color/white"
 
                 >
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View Data"
-                    android:textColor="#fff"
+                    android:textColor="#4587A5"
                     android:textSize="30dp"
                     android:layout_marginLeft="20dp"
                     />
