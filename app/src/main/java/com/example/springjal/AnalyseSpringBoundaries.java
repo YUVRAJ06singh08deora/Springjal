@@ -81,7 +81,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String imageUrl = params[0];
-            String serverUrl = "https://flask-production-5149.up.railway.app/analyze";
+            String serverUrl = "https://chiragswmcalculatepixel.azurewebsites.net/analyze";
             String Imagefetch = "https://flask-production-5149.up.railway.app/process_image";// Replace with your server's IP address
 
             try {
@@ -276,7 +276,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String imageUrl = params[0];
-            String serverUrl = "https://flask-production-5149.up.railway.app/analyze";
+            String serverUrl = "https://chiragswmcalculatepixel.azurewebsites.net/analyze";
             String Imagefetch = "https://flask-production-5149.up.railway.app/process_image";// Replace with your server's IP address
 
             try {
