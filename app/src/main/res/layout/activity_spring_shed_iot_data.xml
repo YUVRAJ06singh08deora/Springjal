@@ -20,7 +20,7 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="406dp"
+        android:layout_height="250dp"
         android:layout_below="@id/createaccounttxt">
 
         <LinearLayout
@@ -398,31 +398,17 @@
         </LinearLayout>
 
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/statusrl"
+
+
+    <ImageView
+        android:id="@+id/imageResult"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="270dp"
         android:layout_below="@+id/scroll"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="82dp"
+        android:src="@drawable/green_image">
 
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Status :"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/statusedittextDisplay"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Good"
-            android:textColorHint="#59EE12" />
-    </LinearLayout>
+    </ImageView>
 
 
 </RelativeLayout>
