@@ -3,12 +3,16 @@ package com.example.springjal;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,21 +24,33 @@ import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
 public class DataCollector_new_activity_2 extends AppCompatActivity {
-    RelativeLayout uploadbtn;
+    RelativeLayout uploadbtn,uploadfromesp;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final String IMAGE_URL = "http://192.168.8.86/cam-hi.jpg"; // URL of the image
+
     private static final int REQUEST_IMAGE_FROM_GALLERY = 2;
     ImageView springimage;
     ImageButton gmapCurrent;
     TextView latitude, longitude;
     EditText additionalDetails;
     private Uri imageUri; // Declaration of imageUri variable
+    private loading loadingDialog;
     String state,district,village,beneficiary,status,dateOfSurvey,iotDeviceId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +70,7 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
         gmapCurrent=findViewById(R.id.gmapImgButn);
         longitude = findViewById(R.id.longitudeinput);
         additionalDetails = findViewById(R.id.additionaldetailsinput);
+        uploadfromesp=findViewById(R.id.getphotofromurl);
         double latitudedouble=intent.getDoubleExtra("latitude",0.0);
         double longitudedouble=intent.getDoubleExtra("longitude",0.0);
         String latstr=String.valueOf(latitudedouble);
@@ -61,6 +78,15 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
         latitude.setText(latstr);
         longitude.setText(longstr);
         uploadbtn = findViewById(R.id.uploadbtn);
+        loadingDialog = new loading(DataCollector_new_activity_2.this);
+        uploadfromesp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadingDialog.show();
+                new DownloadImageTask().execute(IMAGE_URL);
+              //  loadingDialog.dismiss();
+            }
+        });
         springimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,10 +119,13 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
         uploadbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadingDialog.show();
                 if (imageUri != null) {
                     // Upload the image to Firebase Storage
                     uploadImageToFirebaseStorage(state,district,village,beneficiary,status,dateOfSurvey,iotDeviceId);
+
                 } else {
+                    loadingDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Please capture an image first", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -147,17 +176,41 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
 
     // Method to convert Bitmap to Uri
     private Uri getImageUri(Context context, Bitmap bitmap) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
-        return Uri.parse(path);
+        try {
+            // Generate a unique file name for the image
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + ".jpg";
+
+            // Define the content values for the image
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, imageFileName);
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+
+            // Insert the image into the MediaStore
+            Uri uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+            if (uri != null) {
+                // Open an OutputStream to write the bitmap data to the content provider
+                OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
+                if (outputStream != null) {
+                    // Compress the bitmap and write it to the OutputStream
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                    outputStream.close();
+                    return uri; // Return the Uri of the inserted image
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Return null if there was an error inserting the image
+        return null;
     }
 
-    private void uploadImageToFirebaseStorage(String state, String district, String village, String beneficiary, String status, String dateOfSurvey, String iotDeviceId) {
-        // Show the loading dialog
-        upload loadingDialog = new upload(DataCollector_new_activity_2.this);
-        loadingDialog.show();
 
+    private void uploadImageToFirebaseStorage(String state, String district, String village, String beneficiary, String status, String dateOfSurvey, String iotDeviceId) {
+
+        loadingDialog.show();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         String imageName = "images/" + UUID.randomUUID() + ".jpg"; // Generate a unique image name
@@ -176,10 +229,9 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
                         // Save all data including imageUrl to Firestore
                         saveDataToFirestore(state, district, village, beneficiary, status, dateOfSurvey, iotDeviceId, latitudetxt, longtxt, additionaldetailstxt, imageUrl);
                         // Dismiss the loading dialog after a delay (4 seconds)
-                        new android.os.Handler().postDelayed(
-                                loadingDialog::dismiss,
-                                3000
-                        );
+                        Intent i=new Intent(DataCollector_new_activity_2.this,DataCollector_Home.class);
+                        startActivity(i);
+                        loadingDialog.dismiss();
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -226,6 +278,7 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
                     // Data successfully added to Firestore
                     // You can add any additional actions here upon successful data addition
                     Toast.makeText(getApplicationContext(), "Data saved to Firestore", Toast.LENGTH_SHORT).show();
+
                 })
                 .addOnFailureListener(e -> {
                     // Handle any errors that may occur while adding data to Firestore
@@ -248,4 +301,37 @@ public class DataCollector_new_activity_2 extends AppCompatActivity {
         String paddedCount = padNumber(count, 4);
         return villagename.substring(0, Math.min(villagename.length(), 3)).toLowerCase() + paddedCount;
     }
+    private class DownloadImageTask extends AsyncTask<String, Void, Uri> {
+
+        protected Uri doInBackground(String... urls) {
+            String url = urls[0];
+            Uri imageUri = null;
+            try {
+                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(input);
+                // Convert Bitmap to Uri
+                imageUri = getImageUri(getApplicationContext(), bitmap);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return imageUri;
+        }
+
+        protected void onPostExecute(Uri result) {
+            if (result != null) {
+                // Set the imageUri variable
+                imageUri = result;
+                // Set the image in the ImageView
+                springimage.setImageURI(result);
+                loadingDialog.dismiss();
+            } else {
+                // Handle error if image couldn't be downloaded
+                Log.e("Error", "Failed to download image");
+            }
+        }
+    }
+
 }
