@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,9 @@ public class SpringShedIotData extends AppCompatActivity {
     EditText temperatureEditText, turbidityEditText, phEditText, conductivityEditText,
             doEditText, waterFlowEditText, gasSensorEditText, hardnessEditText,
             solidsEditText, chloraminesEditText, sulfateEditText, organicCarbonEditText,
-            trihalomethanesEditText, status;
+            trihalomethanesEditText;
+    ImageView status;
+    private loading loadingDialog;
 
     List<String> fcmTokens;
     private static final String CHANNEL_ID = "myFirebaseChannel";
@@ -52,6 +55,8 @@ public class SpringShedIotData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spring_shed_iot_data);
+        loadingDialog = new loading(SpringShedIotData.this);
+        loadingDialog.show();
         createNotificationChannel();
 
         // Initialize EditText fields
@@ -68,7 +73,7 @@ public class SpringShedIotData extends AppCompatActivity {
         sulfateEditText = findViewById(R.id.sulfateedt);
         organicCarbonEditText = findViewById(R.id.organiccarbnedt);
         trihalomethanesEditText = findViewById(R.id.trihalomethaneet);
-        status = findViewById(R.id.statusedittextDisplay);
+        status = findViewById(R.id.imageResult);
 
         // Firebase reference
         DatabaseReference firebaseRef = FirebaseDatabase.getInstance().getReference()
@@ -146,7 +151,7 @@ public class SpringShedIotData extends AppCompatActivity {
                     RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
 
                     Request request = new Request.Builder()
-                            .url("https://flask-production-5149.up.railway.app/predict_water_quality")
+                            .url("https://chiragswm.azurewebsites.net/predict_water_quality")
                             .post(requestBody)
                             .build();
 
@@ -184,8 +189,9 @@ public class SpringShedIotData extends AppCompatActivity {
                                         System.out.println(waterQualityPrediction);
                                         String zero = "0";
                                         if (waterQualityPrediction.equals(zero)) {
-                                            status.setText("BAD");
-                                            status.setTextColor(Color.RED);
+                                            status.setImageResource(R.drawable.red_image);
+                                            loadingDialog.dismiss();
+
                                             // Toast.makeText(SpringShedIotData.this, ""+fcmTokens.size(), Toast.LENGTH_SHORT).show();
                                             for (int i = 0; i < fcmTokens.size(); i++) {
                                                 String fcmToken = fcmTokens.get(i);
@@ -243,8 +249,8 @@ public class SpringShedIotData extends AppCompatActivity {
                                             updateStatusonfirebase("BAD");
 
                                         } else {
-                                            status.setText("GOOD");
-                                            status.setTextColor(Color.GREEN);
+                                            status.setImageResource(R.drawable.green_image);
+                                            loadingDialog.dismiss();
                                             updateStatusonfirebase("GOOD");
                                         }
                                     } catch (JSONException e) {
@@ -259,14 +265,14 @@ public class SpringShedIotData extends AppCompatActivity {
                     });
                 } else {
                     // Data not found
-                    status.setText("Data not found");
+                   // status.setText("Data not found");
                 }
             } else {
                 // Task failed with an exception
                 Exception e = task.getException();
                 if (e != null) {
                     e.printStackTrace();
-                    status.setText("Task failed with exception");
+                    //status.setText("Task failed with exception");
                 }
             }
         });
