@@ -30,7 +30,7 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
     String imageurl,imageurl2;
     TextView changeAre;
     String link1,link2;
-     private loading loadingDialog;
+    private loading loadingDialog;
     double area,area1;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -126,10 +126,10 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
 
                 // Fetch the "area" data
-                 area = 100-jsonObject.getDouble("area");
+                area = 100-jsonObject.getDouble("area");
 
                 // Convert the area to a string
-               String areaString = Double.toString(area);
+                String areaString = Double.toString(area);
                 original.setText(areaString);
 
                 // Print the result
@@ -337,4 +337,4 @@ public class AnalyseSpringBoundaries extends AppCompatActivity {
             }
 
         }
-}}
+    }}

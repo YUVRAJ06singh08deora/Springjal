@@ -51,7 +51,6 @@ public class BarChart_WaterQuality extends AppCompatActivity {
 
         BarDataSet waterDischargeDataSet = new BarDataSet(waterDischargeEntries, "Water Discharge");
         waterDischargeDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
         List<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(rainfallDataSet);
         dataSets.add(waterDischargeDataSet);

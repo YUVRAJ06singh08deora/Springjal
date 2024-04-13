@@ -19,7 +19,7 @@
     <RelativeLayout
         android:id="@+id/loginrl"
         android:layout_width="343dp"
-        android:layout_height="86dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginLeft="23dp"
         android:layout_below="@+id/logintxtpage">
