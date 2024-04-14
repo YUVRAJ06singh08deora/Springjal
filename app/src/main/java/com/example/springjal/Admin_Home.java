@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+// Admins
 public class Admin_Home extends AppCompatActivity {
     RelativeLayout recievedActivities, SearchSpringData, analyseSpringBoundaries, Analytics, springPlot, sendMessage;
     private TextView usernameTextView;
